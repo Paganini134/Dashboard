@@ -91,3 +91,10 @@
 - GitHub rejected the push because the commit includes `.github/workflows/deploy-pages.yml`, and the token does not have permission to create or update workflow files: `refusing to allow a Personal Access Token to create or update workflow '.github/workflows/deploy-pages.yml' without 'workflow' scope`.
 - Updated the remote URL casing to GitHub's canonical location: `https://github.com/Paganini134/Dashboard.git`.
 - Next fix: use a token with workflow-file permission, or remove the workflow file from the pushed history.
+
+## 10. Prompt: Push with workflow-capable token
+
+- Retried the push using a one-shot token flow with `credential.helper` disabled.
+- Did not store the token in the repository, Git config, remote URL, or this context file.
+- Push succeeded to `https://github.com/Paganini134/Dashboard.git`.
+- Local branch `main` now tracks `origin/main`.
