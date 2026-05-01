@@ -104,3 +104,6 @@
 - User changed the GitHub repository Pages setting so the project can deploy through GitHub Pages.
 - Before triggering deployment, `https://paganini134.github.io/Dashboard/` still returned `404`.
 - Prepared a new push to `main` so `.github/workflows/deploy-pages.yml` runs and deploys the built Vite app from `dist`.
+- The triggered `Deploy GitHub Pages` workflow completed successfully.
+- Verified `https://paganini134.github.io/Dashboard/` returns HTTP `200` and serves the Vite app HTML for `Voxel Sandbox`.
+- GitHub Pages reports the published URL as `https://paganini134.github.io/Dashboard/`.
