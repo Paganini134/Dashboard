@@ -107,3 +107,30 @@
 - The triggered `Deploy GitHub Pages` workflow completed successfully.
 - Verified `https://paganini134.github.io/Dashboard/` returns HTTP `200` and serves the Vite app HTML for `Voxel Sandbox`.
 - GitHub Pages reports the published URL as `https://paganini134.github.io/Dashboard/`.
+
+## 12. Prompt: Add interactive version-control visualization without GitHub plugin
+
+- User clarified not to use the GitHub plugin/connector.
+- Checked npm for `graphiffy`; npm returned `404 Not Found`, so the exact `graphiffy` package was not installable from the npm registry.
+- User provided a YouTube reference and asked to use an existing visualization library to limit custom code.
+- Checked `@gitgraph/js`, `@gitgraph/react`, and `gitgraph.js`; selected `@gitgraph/js` because it is purpose-built to draw Git graphs in the browser without adding React.
+- Installed `@gitgraph/js` and removed the earlier generic `graphology` and `sigma` packages.
+- Added `scripts/generate-vcs-data.mjs` to generate `public/vcs-data.json` from local Git history.
+- Added `vcs.html`, `src/vcs.ts`, and `src/vcs.css` for a GitGraph.js-powered commit graph with search, timeline selection, commit details, refs, and changed-file stats.
+- Added a `Version Graph` link from the game HUD and a `Game` link back from the graph page.
+- Updated `npm run dev` and `npm run build` so they regenerate VCS data before starting/building.
+- Ignored generated `public/vcs-data.json` so builds do not create timestamp-only Git noise.
+- Updated the GitHub Pages workflow checkout to use full history with `fetch-depth: 0`, so the hosted visualization can include more than the latest commit.
+- Updated Vite config so both `index.html` and `vcs.html` are built and deployed.
+- Extended `scripts/verify.mjs` so it checks the game page and the new VCS graph page.
+- Verified locally with `npm run build` and `node scripts/verify.mjs`.
+- Committed the changes as `Add interactive version graph`.
+- Attempted to push with the GitHub plugin disabled and Git credential helper bypassed; push failed because no usable username/token was available to the shell: `could not read Username for 'https://github.com': terminal prompts disabled`.
+
+## 13. Prompt: Use provided token to push pending version graph commit
+
+- Retried pushing `main` with a provided token using a temporary one-shot `GIT_ASKPASS` script and `credential.helper` disabled.
+- Did not store the token in the repository, Git config, remote URL, or this context file.
+- Tried both `Paganini134` and `paganini134` as the HTTPS username.
+- GitHub rejected both attempts with: `Invalid username or token. Password authentication is not supported for Git operations.`
+- The local branch remains one commit ahead of `origin/main`; push is still pending.

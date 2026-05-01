@@ -4,11 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
-    "build": "tsc && vite build",
+    "vcs:data": "node scripts/generate-vcs-data.mjs",
+    "dev": "npm run vcs:data && vite --host 127.0.0.1",
+    "build": "npm run vcs:data && tsc && vite build",
     "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {
+    "@gitgraph/js": "^1.4.0",
     "three": "^0.164.1",
     "vite": "^5.2.0"
   },

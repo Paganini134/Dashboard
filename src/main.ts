@@ -108,6 +108,7 @@ app.innerHTML = `
   <div class="hud">
     <div class="topbar">
       <div class="badge" id="status">Click to play</div>
+      <a class="badge hud-link" href="./vcs.html">Version Graph</a>
     </div>
     <div class="crosshair"></div>
     <div class="block-name" id="block-name"></div>

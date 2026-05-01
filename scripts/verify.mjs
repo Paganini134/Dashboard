@@ -45,5 +45,29 @@ for (const target of targets) {
   await page.close();
 }
 
+const vcsPage = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+await vcsPage.goto("http://127.0.0.1:5173/vcs.html", { waitUntil: "networkidle" });
+await vcsPage.waitForSelector("#graph svg");
+await vcsPage.waitForSelector(".commit-row");
+await vcsPage.screenshot({ path: "test-results/vcs.png", fullPage: true });
+
+const vcsReport = await vcsPage.evaluate(() => {
+  const rows = document.querySelectorAll(".commit-row").length;
+  const graphSvg = document.querySelector("#graph svg");
+  const summary = document.querySelector("#summary")?.textContent ?? "";
+  return {
+    ok: rows > 0 && graphSvg instanceof SVGSVGElement && summary.includes("commits"),
+    rows,
+    hasSvg: graphSvg instanceof SVGSVGElement,
+    summary
+  };
+});
+
+if (!vcsReport.ok) {
+  throw new Error(`vcs page check failed: ${JSON.stringify(vcsReport)}`);
+}
+
+await vcsPage.close();
+
 await browser.close();
-console.log("Playwright verification passed for desktop and mobile viewports.");
+console.log("Playwright verification passed for game and VCS graph pages.");

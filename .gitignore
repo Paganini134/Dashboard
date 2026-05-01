@@ -1,7 +1,9 @@
 node_modules/
 dist/
 test-results/
+public/vcs-data.json
 .DS_Store
 *.log
 .~*
+*.swp
 agents.md.docx

@@ -76,6 +76,12 @@ canvas {
   backdrop-filter: blur(8px);
 }
 
+.hud-link {
+  pointer-events: auto;
+  color: #f7fbff;
+  text-decoration: none;
+}
+
 .hotbar {
   position: absolute;
   left: 50%;
