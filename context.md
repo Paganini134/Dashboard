@@ -98,3 +98,9 @@
 - Did not store the token in the repository, Git config, remote URL, or this context file.
 - Push succeeded to `https://github.com/Paganini134/Dashboard.git`.
 - Local branch `main` now tracks `origin/main`.
+
+## 11. Prompt: Enable Pages and trigger deployment
+
+- User changed the GitHub repository Pages setting so the project can deploy through GitHub Pages.
+- Before triggering deployment, `https://paganini134.github.io/Dashboard/` still returned `404`.
+- Prepared a new push to `main` so `.github/workflows/deploy-pages.yml` runs and deploys the built Vite app from `dist`.
